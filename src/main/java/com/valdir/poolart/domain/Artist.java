@@ -2,15 +2,19 @@ package com.valdir.poolart.domain;
 
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter @Setter
-@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "ARTIST")
@@ -36,5 +40,19 @@ public class Artist extends User{
 
     public void addSkill(String skill) {
         this.skills.add(skill);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Artist artist = (Artist) o;
+
+        return Objects.equals(getId(), artist.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 787003919;
     }
 }

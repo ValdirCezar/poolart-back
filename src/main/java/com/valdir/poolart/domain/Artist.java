@@ -31,9 +31,9 @@ public class Artist extends User{
     @CollectionTable(name = "TB_SKILLS")
     private Set<String> skills = new HashSet<>();
 
-    public Artist(Integer id, String name, PersonType personType, String Phone, String email, String password, Profile profile, String cpf, String about, Integer age) {
-        super(id, name, personType, Phone, email, password, profile);
-        this.setPersonType(PersonType.PHYSICAL);
+    public Artist(Integer id, String name, String phone, String email, String password, Profile profile, String cpf, String about, Integer age) {
+        super(id, name, phone, email, password, profile);
+        setPersonType(PersonType.PHYSICAL);
         this.cpf = cpf;
         this.about = about;
         this.age = age;

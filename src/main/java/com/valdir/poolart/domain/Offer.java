@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -27,9 +24,13 @@ public class Offer implements Serializable {
     private Integer id;
     private String title;
     private LocalDate date;
-    private Double price;
+    private Float price;
     private Status status;
-    private String obseracoes;
+    private String observations;
+
+    @ManyToOne
+    @JoinColumn
+    private User user;
 
     @Override
     public boolean equals(Object o) {

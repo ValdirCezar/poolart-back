@@ -26,9 +26,9 @@ public class Enterprise extends User{
     @Column(unique = true)
     private String cnpj;
 
-    public Enterprise(Integer id, String name, PersonType personType, String Phone, String email, String password, Profile profile, String about, String cnpj) {
-        super(id, name, personType, Phone, email, password, profile);
-        this.setPersonType(PersonType.LEGAL);
+    public Enterprise(Integer id, String name, String phone, String email, String password, Profile profile, String about, String cnpj) {
+        super(id, name, phone, email, password, profile);
+        setPersonType(PersonType.LEGAL);
         this.about = about;
         this.cnpj = cnpj;
     }

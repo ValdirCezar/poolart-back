@@ -33,6 +33,7 @@ public class Artist extends User{
 
     public Artist(Integer id, String name, PersonType personType, String Phone, String email, String password, Profile profile, String cpf, String about, Integer age) {
         super(id, name, personType, Phone, email, password, profile);
+        this.setPersonType(PersonType.PHYSICAL);
         this.cpf = cpf;
         this.about = about;
         this.age = age;

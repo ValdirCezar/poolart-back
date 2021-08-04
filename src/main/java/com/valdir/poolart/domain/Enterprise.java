@@ -28,6 +28,7 @@ public class Enterprise extends User{
 
     public Enterprise(Integer id, String name, PersonType personType, String Phone, String email, String password, Profile profile, String about, String cnpj) {
         super(id, name, personType, Phone, email, password, profile);
+        this.setPersonType(PersonType.LEGAL);
         this.about = about;
         this.cnpj = cnpj;
     }

@@ -17,7 +17,7 @@ public class DBService {
     private UserRepository userRepository;
 
     public void startDB() {
-        Artist a1 = new Artist(null, "Valdir Cezar", PersonType.PHYSICAL, "43984634308", "valdr@mail.com", "123", Profile.ADMIN, "582.579.570-70", "Cantor", 21);
+        Artist a1 = new Artist(null, "Valdir Cezar", PersonType.PHYSICAL , "43984634308", "valdr@mail.com", "123", Profile.ADMIN, "582.579.570-70", "Cantor", 21);
         a1.addSkill("Sabe programar cantando kkk");
 
         Enterprise e1 = new Enterprise(null, "ZACK BURGUER", PersonType.LEGAL, "43991518434", "zack@mail.com", "123", Profile.ENTERPRISE, "Amburgueria do Matheus", "07360730000142");

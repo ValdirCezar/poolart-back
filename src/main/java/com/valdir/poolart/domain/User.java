@@ -1,5 +1,6 @@
 package com.valdir.poolart.domain;
 
+import com.valdir.poolart.domain.enums.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,4 +29,5 @@ public class User implements Serializable {
     @Column(unique = true)
     private String email;
     private String password;
+    private Profile profile;
 }

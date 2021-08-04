@@ -1,7 +1,6 @@
-package com.valdir.poolart;
+package com.valdir.poolart.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.valdir.poolart.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,7 @@ public class Address  implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String cep;
-    private String Country;
+    private String country;
     private String city;
     private String street;
     private String number;

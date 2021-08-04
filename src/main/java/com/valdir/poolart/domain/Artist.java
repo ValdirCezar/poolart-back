@@ -1,14 +1,13 @@
 package com.valdir.poolart.domain;
 
+import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +18,9 @@ import java.util.Set;
 public class Artist extends User{
     private static final long serialVersionUID = 1L;
 
+    @CPF
+    @Column(unique = true)
+    private String cpf;
     private String about;
     private Integer age;
 
@@ -26,12 +28,11 @@ public class Artist extends User{
     @CollectionTable(name = "SKILLS")
     private Set<String> skills = new HashSet<>();
 
-    public Artist(Integer id, String name, String cpfOrCnpj, String Phone, String email,
-                  String password, Profile profile, String about, Integer age, Set<String> skills) {
-        super(id, name, cpfOrCnpj, Phone, email, password, profile);
+    public Artist(Integer id, String name, PersonType personType, String Phone, String email, String password, Profile profile, String cpf, String about, Integer age) {
+        super(id, name, personType, Phone, email, password, profile);
+        this.cpf = cpf;
         this.about = about;
         this.age = age;
-        this.skills = skills;
     }
 
     public void addSkill(String skill) {

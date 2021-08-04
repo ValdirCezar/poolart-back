@@ -1,5 +1,6 @@
 package com.valdir.poolart.domain;
 
+import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,8 +21,7 @@ public abstract class User implements Serializable {
     private Integer id;
     private String name;
 
-    @Column(unique = true)
-    private String cpfOrCnpj;
+    private PersonType personType;
 
     @Column(unique = true)
     private String Phone;

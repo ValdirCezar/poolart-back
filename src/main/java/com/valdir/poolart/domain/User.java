@@ -1,8 +1,8 @@
 package com.valdir.poolart.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,10 +10,11 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "TB_USER")
 public abstract class User implements Serializable {
@@ -21,18 +22,31 @@ public abstract class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
+    protected Integer id;
+    protected String name;
 
-    private PersonType personType;
-
-    @Column(unique = true)
-    private String Phone;
+    protected PersonType personType;
 
     @Column(unique = true)
-    private String email;
-    private String password;
-    private Profile profile;
+    protected String Phone;
+
+    @Column(unique = true)
+    protected String email;
+    protected String password;
+    protected Profile profile;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    protected List<Offer> offers = new ArrayList<>();
+
+    public User(Integer id, String name, String phone, String email, String password, Profile profile) {
+        this.id = id;
+        this.name = name;
+        Phone = phone;
+        this.email = email;
+        this.password = password;
+        this.profile = profile;
+    }
 
     @Override
     public boolean equals(Object o) {

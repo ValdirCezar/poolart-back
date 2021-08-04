@@ -1,5 +1,6 @@
 package com.valdir.poolart.domain;
 
+import com.valdir.poolart.domain.enums.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,4 +16,8 @@ public class Enterprise extends User{
 
     private String about;
 
+    public Enterprise(Integer id, String name, String cpfOrCnpj, String Phone, String email, String password, Profile profile, String about) {
+        super(id, name, cpfOrCnpj, Phone, email, password, profile);
+        this.about = about;
+    }
 }

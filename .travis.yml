@@ -1,1 +1,5 @@
 language: java
+  java: 11
+
+sudo: false
+script: mvn clean verify

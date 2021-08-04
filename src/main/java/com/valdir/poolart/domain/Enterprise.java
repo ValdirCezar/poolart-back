@@ -2,18 +2,17 @@ package com.valdir.poolart.domain;
 
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Data
+@Getter @Setter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "TB_ENTERPRISE")
+@Entity(name = "ENTERPRISE")
 public class Enterprise extends User{
     private static final long serialVersionUID = 1L;
 

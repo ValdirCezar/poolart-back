@@ -2,19 +2,18 @@ package com.valdir.poolart.domain;
 
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter @Setter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "TB_ARTIST")
+@Entity(name = "ARTIST")
 public class Artist extends User{
     private static final long serialVersionUID = 1L;
 
@@ -25,7 +24,7 @@ public class Artist extends User{
     private Integer age;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "SKILLS")
+    @CollectionTable(name = "TB_SKILLS")
     private Set<String> skills = new HashSet<>();
 
     public Artist(Integer id, String name, PersonType personType, String Phone, String email, String password, Profile profile, String cpf, String about, Integer age) {

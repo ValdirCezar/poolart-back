@@ -21,13 +21,13 @@ public class DBService {
     private AddressRepository addressRepository;
 
     public void startDB() {
-        Artist a1 = new Artist(null, "User 1", "43984634301", "email1@mail.com", "123", Profile.ADMIN, "58257957070", "Cantor", 21);
-        Artist a2 = new Artist(null, "User 2", "43984634302", "email2@mail.com", "123", Profile.ADMIN, "35543591225", "Cantor", 22);
-        Artist a3 = new Artist(null, "User 3", "43984634303", "email3@mail.com", "123", Profile.ADMIN, "32434616500", "Cantor", 23);
-        Artist a4 = new Artist(null, "User 4", "43984634304", "email4@mail.com", "123", Profile.ADMIN, "43262842346", "Cantor", 24);
-        Artist a5 = new Artist(null, "User 5", "43984634305", "email5@mail.com", "123", Profile.ADMIN, "82737411092", "Cantor", 25);
-        Artist a6 = new Artist(null, "User 6", "43984634306", "email6@mail.com", "123", Profile.ADMIN, "16186255867", "Cantor", 26);
-        Artist a7 = new Artist(null, "User 7", "43984634307", "email7@mail.com", "123", Profile.ADMIN, "51475141718", "Cantor", 27);
+        Artist a1 = new Artist(null, "Valdir Cezar", "43984634301", "valdir@mail.com", "123", Profile.ADMIN, "58257957070", "Cantor", 21);
+        Artist a2 = new Artist(null, "User 2", "43984634302", "email2@mail.com", "123", Profile.ARTIST, "35543591225", "Cantor", 22);
+        Artist a3 = new Artist(null, "User 3", "43984634303", "email3@mail.com", "123", Profile.ARTIST, "32434616500", "Cantor", 23);
+        Artist a4 = new Artist(null, "User 4", "43984634304", "email4@mail.com", "123", Profile.ARTIST, "43262842346", "Cantor", 24);
+        Artist a5 = new Artist(null, "User 5", "43984634305", "email5@mail.com", "123", Profile.ARTIST, "82737411092", "Cantor", 25);
+        Artist a6 = new Artist(null, "User 6", "43984634306", "email6@mail.com", "123", Profile.ARTIST, "16186255867", "Cantor", 26);
+        Artist a7 = new Artist(null, "User 7", "43984634307", "email7@mail.com", "123", Profile.ARTIST, "51475141718", "Cantor", 27);
 
         Enterprise e1 = new Enterprise(null, "Enterprise 1", "43991518431", "email10@mail.com", "123", Profile.ENTERPRISE, "Description od enterprise 1", "07360730000142");
         Enterprise e2 = new Enterprise(null, "Enterprise 2", "43991518432", "email20@mail.com", "123", Profile.ENTERPRISE, "Description od enterprise 2", "52218182000175");

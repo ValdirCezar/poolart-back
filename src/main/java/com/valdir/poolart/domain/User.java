@@ -1,6 +1,5 @@
 package com.valdir.poolart.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
 import lombok.Getter;
@@ -10,8 +9,6 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Getter @Setter
@@ -34,10 +31,6 @@ public abstract class User implements Serializable {
     protected String email;
     protected String password;
     protected Profile profile;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    protected List<Offer> offers = new ArrayList<>();
 
     public User(Integer id, String name, String phone, String email, String password, Profile profile) {
         this.id = id;

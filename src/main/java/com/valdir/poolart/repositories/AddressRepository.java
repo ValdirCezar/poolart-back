@@ -1,6 +1,6 @@
 package com.valdir.poolart.repositories;
 
-import com.valdir.poolart.Address;
+import com.valdir.poolart.domain.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

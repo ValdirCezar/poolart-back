@@ -1,6 +1,6 @@
 package com.valdir.poolart.services;
 
-import com.valdir.poolart.Address;
+import com.valdir.poolart.domain.Address;
 import com.valdir.poolart.domain.Artist;
 import com.valdir.poolart.domain.Enterprise;
 import com.valdir.poolart.domain.Offer;

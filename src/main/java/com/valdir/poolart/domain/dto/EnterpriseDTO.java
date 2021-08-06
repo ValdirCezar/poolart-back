@@ -1,31 +1,24 @@
 package com.valdir.poolart.domain.dto;
 
-import com.valdir.poolart.domain.Address;
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-@Getter @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class ArtistDTO implements Serializable {
+public class EnterpriseDTO implements Serializable {
     private static final long serialVersionUID = 1L;
+
     private Integer id;
 
     @NotEmpty(message = "O campo NOME é mandatório")
     private String name;
 
-    private PersonType personType = PersonType.PHYSICAL;
+    @NotEmpty(message = "O campo CNPJ é mandatório")
+    private String cnpj;
+
+    private PersonType personType = PersonType.LEGAL;
 
     @NotEmpty(message = "O campo PHONE é mandatório")
     private String Phone;
@@ -37,13 +30,7 @@ public class ArtistDTO implements Serializable {
     @NotEmpty(message = "O campo PASSWORD é mandatório")
     private String password;
 
-    private Profile profile = Profile.ARTIST;
-
-    @CPF
-    @NotEmpty(message = "O campo CPF é mandatório")
-    private String cpf;
+    private Profile profile = Profile.ENTERPRISE;
     private String about;
-    private Integer age;
-    private Address address;
-    private Set<String> skills = new HashSet<>();
+
 }

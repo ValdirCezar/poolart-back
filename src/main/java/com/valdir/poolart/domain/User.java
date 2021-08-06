@@ -25,7 +25,7 @@ public abstract class User implements Serializable {
     protected PersonType personType;
 
     @Column(unique = true)
-    protected String Phone;
+    protected String phone;
 
     @Column(unique = true)
     protected String email;
@@ -35,7 +35,7 @@ public abstract class User implements Serializable {
     public User(Integer id, String name, String phone, String email, String password, Profile profile) {
         this.id = id;
         this.name = name;
-        Phone = phone;
+        this.phone = phone;
         this.email = email;
         this.password = password;
         this.profile = profile;

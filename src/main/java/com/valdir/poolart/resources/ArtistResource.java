@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping(value = "/artists")
 public class ArtistResource {
@@ -25,5 +28,11 @@ public class ArtistResource {
     public ResponseEntity<ArtistDTO> findById(@PathVariable Integer id) {
         Artist obj = service.findById(id);
         return ResponseEntity.ok().body(mapper.map(obj, ArtistDTO.class));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ArtistDTO>> findById() {
+        List<Artist> list = service.findAll();
+        return ResponseEntity.ok().body(list.stream().map(obj -> mapper.map(obj, ArtistDTO.class)).collect(Collectors.toList()));
     }
 }

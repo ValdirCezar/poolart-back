@@ -52,6 +52,10 @@ public class ArtistService {
         return repository.save(mapper.map(obj, Artist.class));
     }
 
+    public void delete(Integer id) {
+        repository.delete(findById(id));
+    }
+
     private void validByEmailAndPhone(ArtistDTO dto){
         Optional<User> user = userRepository.findByEmail(dto.getEmail());
         if(user.isPresent() && !user.get().getId().equals(dto.getId())) {

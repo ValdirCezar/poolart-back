@@ -1,5 +1,6 @@
 package com.valdir.poolart.domain.dto;
 
+import com.valdir.poolart.domain.Address;
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
 import lombok.AllArgsConstructor;
@@ -40,8 +41,8 @@ public class ArtistDTO {
     @CPF
     @NotEmpty(message = "O campo CPF é mandatório")
     private String cpf;
-
     private String about;
     private Integer age;
+    private Address address;
     private Set<String> skills = new HashSet<>();
 }

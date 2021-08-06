@@ -49,4 +49,10 @@ public class ArtistResource {
         return ResponseEntity.ok().body(obj);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<ArtistDTO> delete(@PathVariable Integer id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

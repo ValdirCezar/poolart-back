@@ -17,6 +17,8 @@ import java.util.Optional;
 @Service
 public class ArtistService {
 
+    private static final String ALREADY_REGISTERED = "já cadastrado no sistema!";
+
     @Autowired
     private ArtistRepository repository;
 
@@ -45,19 +47,19 @@ public class ArtistService {
     private void validByEmailAndPhone(ArtistDTO dto){
         Optional<User> user = userRepository.findByEmail(dto.getEmail());
         if(user.isPresent()) {
-            throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");
+            throw new DataIntegrityViolationException("E-mail " + ALREADY_REGISTERED);
         }
 
         user = userRepository.findByPhone(dto.getPhone());
         if(user.isPresent()) {
-            throw new DataIntegrityViolationException("Telefone já cadastrado no sistema!");
+            throw new DataIntegrityViolationException("Telefone " + ALREADY_REGISTERED);
         }
     }
 
     private void validByCpf(ArtistDTO dto){
         Optional<Artist> user = repository.findByCpf(dto.getCpf());
         if(user.isPresent()) {
-            throw new DataIntegrityViolationException("CPF já cadastrado no sistema!");
+            throw new DataIntegrityViolationException("CPF " + ALREADY_REGISTERED);
         }
     }
 }

@@ -43,4 +43,10 @@ public class ArtistResource {
         return ResponseEntity.created(uri).build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ArtistDTO> update(@PathVariable Integer id, @Valid @RequestBody ArtistDTO obj) {
+        obj = mapper.map(service.update(id, obj), ArtistDTO.class);
+        return ResponseEntity.ok().body(obj);
+    }
+
 }

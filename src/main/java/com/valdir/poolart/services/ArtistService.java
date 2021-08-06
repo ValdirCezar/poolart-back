@@ -44,22 +44,31 @@ public class ArtistService {
         return repository.save(mapper.map(obj, Artist.class));
     }
 
+    public Artist update(Integer id, ArtistDTO obj) {
+        obj.setId(id);
+        findById(id);
+        validByEmailAndPhone(obj);
+        validByCpf(obj);
+        return repository.save(mapper.map(obj, Artist.class));
+    }
+
     private void validByEmailAndPhone(ArtistDTO dto){
         Optional<User> user = userRepository.findByEmail(dto.getEmail());
-        if(user.isPresent()) {
+        if(user.isPresent() && !user.get().getId().equals(dto.getId())) {
             throw new DataIntegrityViolationException("E-mail " + ALREADY_REGISTERED);
         }
 
         user = userRepository.findByPhone(dto.getPhone());
-        if(user.isPresent()) {
+        if(user.isPresent() && !user.get().getId().equals(dto.getId())) {
             throw new DataIntegrityViolationException("Telefone " + ALREADY_REGISTERED);
         }
     }
 
     private void validByCpf(ArtistDTO dto){
         Optional<Artist> user = repository.findByCpf(dto.getCpf());
-        if(user.isPresent()) {
+        if(user.isPresent() && !user.get().getId().equals(dto.getId())) {
             throw new DataIntegrityViolationException("CPF " + ALREADY_REGISTERED);
         }
     }
+
 }

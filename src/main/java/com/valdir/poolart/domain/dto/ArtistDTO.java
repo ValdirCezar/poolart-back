@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +28,7 @@ public class ArtistDTO {
     @NotEmpty(message = "O campo PHONE é mandatório")
     protected String Phone;
 
+    @Email
     @NotEmpty(message = "O campo E-MAIL é mandatório")
     protected String email;
 
@@ -34,6 +37,7 @@ public class ArtistDTO {
 
     protected Profile profile = Profile.ARTIST;
 
+    @CPF
     @NotEmpty(message = "O campo CPF é mandatório")
     private String cpf;
 

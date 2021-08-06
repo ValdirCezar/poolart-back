@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -21,7 +20,6 @@ import java.util.Set;
 public class Artist extends User{
     private static final long serialVersionUID = 1L;
 
-    @CPF
     @Column(unique = true)
     private String cpf;
     private String about;

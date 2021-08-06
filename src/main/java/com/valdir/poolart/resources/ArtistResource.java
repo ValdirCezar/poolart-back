@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,15 +31,22 @@ public class ArtistResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<ArtistDTO>> findById() {
+    public ResponseEntity<List<ArtistDTO>> findAll() {
         List<Artist> list = service.findAll();
         return ResponseEntity.ok().body(list.stream().map(obj -> mapper.map(obj, ArtistDTO.class)).collect(Collectors.toList()));
     }
 
     @PostMapping
-    public ResponseEntity<ArtistDTO> create(@RequestBody ArtistDTO obj) {
+    public ResponseEntity<ArtistDTO> create(@Valid @RequestBody ArtistDTO obj) {
         obj = mapper.map(service.create(obj), ArtistDTO.class);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ArtistDTO> update(@PathVariable Integer id, @Valid @RequestBody ArtistDTO obj) {
+        obj = mapper.map(service.update(id, obj), ArtistDTO.class);
+        return ResponseEntity.ok().body(obj);
+    }
+
 }

@@ -1,7 +1,9 @@
 package com.valdir.poolart.resources;
 
 import com.valdir.poolart.domain.Artist;
+import com.valdir.poolart.domain.dto.ArtistDTO;
 import com.valdir.poolart.services.ArtistService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +18,12 @@ public class ArtistResource {
     @Autowired
     private ArtistService service;
 
+    @Autowired
+    private ModelMapper mapper;
+
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Artist> findById(@PathVariable Integer id) {
+    public ResponseEntity<ArtistDTO> findById(@PathVariable Integer id) {
         Artist obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.ok().body(mapper.map(obj, ArtistDTO.class));
     }
 }

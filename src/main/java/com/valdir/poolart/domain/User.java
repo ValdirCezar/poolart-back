@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,6 +32,10 @@ public abstract class User implements Serializable {
     protected String email;
     protected String password;
     protected Profile profile;
+
+    @OneToOne(mappedBy = "user")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    protected Address address;
 
     public User(Integer id, String name, String phone, String email, String password, Profile profile) {
         this.id = id;

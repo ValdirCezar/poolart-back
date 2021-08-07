@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
-import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +21,6 @@ public class Enterprise extends User{
 
     private String about;
 
-    @CNPJ
     @Column(unique = true)
     private String cnpj;
 

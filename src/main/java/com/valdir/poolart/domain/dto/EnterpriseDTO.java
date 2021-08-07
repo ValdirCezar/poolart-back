@@ -2,11 +2,14 @@ package com.valdir.poolart.domain.dto;
 
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+@Getter @Setter
 public class EnterpriseDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -1,9 +1,11 @@
 package com.valdir.poolart.domain.dto;
 
+import com.valdir.poolart.domain.Address;
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -18,6 +20,7 @@ public class EnterpriseDTO implements Serializable {
     @NotEmpty(message = "O campo NOME é mandatório")
     private String name;
 
+    @CNPJ
     @NotEmpty(message = "O campo CNPJ é mandatório")
     private String cnpj;
 
@@ -35,5 +38,6 @@ public class EnterpriseDTO implements Serializable {
 
     private Profile profile = Profile.ENTERPRISE;
     private String about;
+    private Address address;
 
 }

@@ -1,5 +1,6 @@
 package com.valdir.poolart.config;
 
+import com.valdir.poolart.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;

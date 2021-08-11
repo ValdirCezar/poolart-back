@@ -10,7 +10,10 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -31,19 +34,29 @@ public abstract class User implements Serializable {
     @Column(unique = true)
     protected String email;
     protected String password;
-    protected Profile profile;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "PROFILES")
+    protected Set<Integer> profiles = new HashSet<>();
 
     @OneToOne(mappedBy = "user")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     protected Address address;
 
-    public User(Integer id, String name, String phone, String email, String password, Profile profile) {
+    public User(Integer id, String name, String phone, String email, String password) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.password = password;
-        this.profile = profile;
+    }
+
+    public void addProfile(Profile profile) {
+        this.profiles.add(profile.getCode());
+    }
+
+    public Set<Profile> getProfiles() {
+        return profiles.stream().map(x -> Profile.toEnum(x)).collect(Collectors.toSet());
     }
 
     @Override

@@ -24,9 +24,10 @@ public class Enterprise extends User{
     @Column(unique = true)
     private String cnpj;
 
-    public Enterprise(Integer id, String name, String phone, String email, String password, Profile profile, String about, String cnpj) {
-        super(id, name, phone, email, password, profile);
+    public Enterprise(Integer id, String name, String phone, String email, String password, String about, String cnpj) {
+        super(id, name, phone, email, password);
         setPersonType(PersonType.LEGAL);
+        addProfile(Profile.ENTERPRISE);
         this.about = about;
         this.cnpj = cnpj;
     }

@@ -2,7 +2,6 @@ package com.valdir.poolart.domain.dto;
 
 import com.valdir.poolart.domain.Address;
 import com.valdir.poolart.domain.enums.PersonType;
-import com.valdir.poolart.domain.enums.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,7 +36,7 @@ public class ArtistDTO implements Serializable {
     @NotEmpty(message = "O campo PASSWORD é mandatório")
     private String password;
 
-    private Profile profile = Profile.ARTIST;
+    private Set<Integer> profiles;
 
     @CPF
     @NotEmpty(message = "O campo CPF é mandatório")

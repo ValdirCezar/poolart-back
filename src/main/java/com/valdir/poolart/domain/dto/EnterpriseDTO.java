@@ -2,6 +2,7 @@ package com.valdir.poolart.domain.dto;
 
 import com.valdir.poolart.domain.Address;
 import com.valdir.poolart.domain.enums.PersonType;
+import com.valdir.poolart.domain.enums.Profile;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -9,6 +10,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Set;
 
 @Getter @Setter
@@ -36,7 +38,7 @@ public class EnterpriseDTO implements Serializable {
     @NotEmpty(message = "O campo PASSWORD é mandatório")
     private String password;
 
-    private Set<Integer> profiles;
+    private Set<Profile> profiles = Collections.singleton(Profile.ENTERPRISE);
 
     private String about;
     private Address address;

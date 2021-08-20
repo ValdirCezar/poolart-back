@@ -18,9 +18,10 @@ public class DevConfig {
     private DBService dbService;
 
     @Bean
-    public void startDB() {
+    public boolean startDB() {
         if(ddl.equals("create")) {
             this.dbService.startDB();
         }
+        return false;
     }
 }

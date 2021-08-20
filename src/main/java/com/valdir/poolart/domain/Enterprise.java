@@ -1,7 +1,5 @@
 package com.valdir.poolart.domain;
 
-import com.valdir.poolart.domain.enums.PersonType;
-import com.valdir.poolart.domain.enums.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +11,6 @@ import javax.persistence.Entity;
 import java.util.Objects;
 
 @Getter @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "ENTERPRISE")
 public class Enterprise extends User{
@@ -26,8 +23,6 @@ public class Enterprise extends User{
 
     public Enterprise(Integer id, String name, String phone, String email, String password, String about, String cnpj) {
         super(id, name, phone, email, password);
-        setPersonType(PersonType.LEGAL);
-        addProfile(Profile.ENTERPRISE);
         this.about = about;
         this.cnpj = cnpj;
     }

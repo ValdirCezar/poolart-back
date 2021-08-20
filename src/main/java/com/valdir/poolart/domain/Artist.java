@@ -1,7 +1,5 @@
 package com.valdir.poolart.domain;
 
-import com.valdir.poolart.domain.enums.PersonType;
-import com.valdir.poolart.domain.enums.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,8 +29,6 @@ public class Artist extends User{
 
     public Artist(Integer id, String name, String phone, String email, String password, String cpf, String about, Integer age) {
         super(id, name, phone, email, password);
-        setPersonType(PersonType.PHYSICAL);
-        addProfile(Profile.ARTIST);
         this.cpf = cpf;
         this.about = about;
         this.age = age;

@@ -1,13 +1,14 @@
 package com.valdir.poolart.config;
 
 import com.valdir.poolart.security.JWTAuthenticationFilter;
+import com.valdir.poolart.security.JWTAuthorizationFilter;
 import com.valdir.poolart.security.JWTUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,10 +23,11 @@ import java.util.Arrays;
 
 @Slf4j
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {"/h2-console/**"};
-    private static final String[] PUBLIC_MATCHERS_POST = {"/users/**"};
+    private static final String[] PUBLIC_MATCHERS_POST = {"/artists/**", "/enterprises/**"};
 
     @Autowired
     private Environment environment;
@@ -45,11 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable();
         http.authorizeRequests()
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
-                .antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
+                .antMatchers(PUBLIC_MATCHERS_POST).permitAll()
                 .anyRequest().authenticated();
 
         log.info("::: SECURITY_CONFIG - Adding JWTAuthenticationFilter");
         http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+        http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

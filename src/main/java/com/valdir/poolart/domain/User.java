@@ -13,7 +13,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -37,7 +36,7 @@ public abstract class User implements Serializable {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "PROFILES")
-    protected Set<Integer> profiles = new HashSet<>();
+    protected Set<Profile> profiles = new HashSet<>();
 
     @OneToOne(mappedBy = "user")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
@@ -51,12 +50,8 @@ public abstract class User implements Serializable {
         this.password = password;
     }
 
-    public void addProfile(Profile profile) {
-        this.profiles.add(profile.getCode());
-    }
-
     public Set<Profile> getProfiles() {
-        return profiles.stream().map(x -> Profile.toEnum(x)).collect(Collectors.toSet());
+        return profiles;
     }
 
     @Override

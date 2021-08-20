@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 @Service
 public class DBService {
@@ -26,7 +27,8 @@ public class DBService {
 
     public void startDB() {
         Artist a1 = new Artist(null, "Valdir Cezar", "43984634301", "valdir@mail.com", encoder.encode("123"), "58257957070", "Cantor", 21);
-        a1.addProfile(Profile.ADMIN);
+        a1.setProfiles(Collections.singleton(Profile.ADMIN));
+
         Artist a2 = new Artist(null, "User 2", "43984634302", "email2@mail.com", encoder.encode("123"),  "35543591225", "Cantor", 22);
         Artist a3 = new Artist(null, "User 3", "43984634303", "email3@mail.com", encoder.encode("123"),  "32434616500", "Cantor", 23);
         Artist a4 = new Artist(null, "User 4", "43984634304", "email4@mail.com", encoder.encode("123"),  "43262842346", "Cantor", 24);

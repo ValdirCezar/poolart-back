@@ -10,7 +10,9 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -31,19 +33,25 @@ public abstract class User implements Serializable {
     @Column(unique = true)
     protected String email;
     protected String password;
-    protected Profile profile;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "PROFILES")
+    protected Set<Profile> profiles = new HashSet<>();
 
     @OneToOne(mappedBy = "user")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     protected Address address;
 
-    public User(Integer id, String name, String phone, String email, String password, Profile profile) {
+    public User(Integer id, String name, String phone, String email, String password) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.password = password;
-        this.profile = profile;
+    }
+
+    public Set<Profile> getProfiles() {
+        return profiles;
     }
 
     @Override

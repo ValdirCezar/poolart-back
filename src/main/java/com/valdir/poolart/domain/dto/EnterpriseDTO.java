@@ -10,6 +10,8 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Set;
 
 @Getter @Setter
 public class EnterpriseDTO implements Serializable {
@@ -36,7 +38,8 @@ public class EnterpriseDTO implements Serializable {
     @NotEmpty(message = "O campo PASSWORD é mandatório")
     private String password;
 
-    private Profile profile = Profile.ENTERPRISE;
+    private Set<Profile> profiles = Collections.singleton(Profile.ENTERPRISE);
+
     private String about;
     private Address address;
 

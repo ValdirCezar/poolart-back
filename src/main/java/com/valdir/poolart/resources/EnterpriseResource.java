@@ -18,13 +18,15 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/enterprises")
 public class EnterpriseResource {
 
+    private static final String ENDPOINT_ID = "/{id}";
+
     @Autowired
     private EnterpriseService service;
 
     @Autowired
     private ModelMapper mapper;
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = ENDPOINT_ID)
     public ResponseEntity<EnterpriseDTO> findById(@PathVariable Integer id) {
         Enterprise obj = service.findById(id);
         return ResponseEntity.ok().body(mapper.map(obj, EnterpriseDTO.class));
@@ -39,17 +41,17 @@ public class EnterpriseResource {
     @PostMapping
     public ResponseEntity<EnterpriseDTO> create(@Valid @RequestBody EnterpriseDTO obj) {
         obj = mapper.map(service.create(obj), EnterpriseDTO.class);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path(ENDPOINT_ID).buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = ENDPOINT_ID)
     public ResponseEntity<EnterpriseDTO> update(@PathVariable Integer id, @Valid @RequestBody EnterpriseDTO obj) {
         obj = mapper.map(service.update(id, obj), EnterpriseDTO.class);
         return ResponseEntity.ok().body(obj);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = ENDPOINT_ID)
     public ResponseEntity<EnterpriseDTO> delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();

@@ -1,7 +1,5 @@
 package com.valdir.poolart.domain;
 
-import com.valdir.poolart.domain.enums.PersonType;
-import com.valdir.poolart.domain.enums.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,9 +27,8 @@ public class Artist extends User{
     @CollectionTable(name = "TB_SKILLS")
     private Set<String> skills = new HashSet<>();
 
-    public Artist(Integer id, String name, String phone, String email, String password, Profile profile, String cpf, String about, Integer age) {
-        super(id, name, phone, email, password, profile);
-        setPersonType(PersonType.PHYSICAL);
+    public Artist(Integer id, String name, String phone, String email, String password, String cpf, String about, Integer age) {
+        super(id, name, phone, email, password);
         this.cpf = cpf;
         this.about = about;
         this.age = age;

@@ -12,6 +12,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,7 +38,7 @@ public class ArtistDTO implements Serializable {
     @NotEmpty(message = "O campo PASSWORD é mandatório")
     private String password;
 
-    private Profile profile = Profile.ARTIST;
+    private Set<Profile> profiles = Collections.singleton(Profile.ARTIST);
 
     @CPF
     @NotEmpty(message = "O campo CPF é mandatório")

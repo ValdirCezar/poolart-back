@@ -7,7 +7,6 @@ import com.valdir.poolart.repositories.EnterpriseRepository;
 import com.valdir.poolart.repositories.UserRepository;
 import com.valdir.poolart.services.exceptions.DataIntegrityViolationException;
 import com.valdir.poolart.services.exceptions.ObjectNotFoundException;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +20,6 @@ public class EnterpriseService {
 
     @Autowired
     private EnterpriseRepository repository;
-
-    @Autowired
-    private ModelMapper mapper;
 
     @Autowired
     private UserRepository userRepository;
@@ -41,7 +37,7 @@ public class EnterpriseService {
         obj.setId(null);
         validByEmailAndPhone(obj);
         validByCnpj(obj);
-        return repository.save(mapper.map(obj, Enterprise.class));
+        return repository.save(new Enterprise(obj));
     }
 
     public Enterprise update(Integer id, EnterpriseDTO obj) {
@@ -49,7 +45,7 @@ public class EnterpriseService {
         findById(id);
         validByEmailAndPhone(obj);
         validByCnpj(obj);
-        return repository.save(mapper.map(obj, Enterprise.class));
+        return repository.save(new Enterprise(obj));
     }
 
     public void delete(Integer id) {

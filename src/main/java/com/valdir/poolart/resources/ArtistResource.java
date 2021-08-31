@@ -3,7 +3,6 @@ package com.valdir.poolart.resources;
 import com.valdir.poolart.domain.Artist;
 import com.valdir.poolart.domain.dto.ArtistDTO;
 import com.valdir.poolart.services.ArtistService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,31 +20,28 @@ public class ArtistResource {
     @Autowired
     private ArtistService service;
 
-    @Autowired
-    private ModelMapper mapper;
-
     @GetMapping(value = "/{id}")
     public ResponseEntity<ArtistDTO> findById(@PathVariable Integer id) {
         Artist obj = service.findById(id);
-        return ResponseEntity.ok().body(mapper.map(obj, ArtistDTO.class));
+        return ResponseEntity.ok().body(new ArtistDTO(obj));
     }
 
     @GetMapping
     public ResponseEntity<List<ArtistDTO>> findAll() {
         List<Artist> list = service.findAll();
-        return ResponseEntity.ok().body(list.stream().map(obj -> mapper.map(obj, ArtistDTO.class)).collect(Collectors.toList()));
+        return ResponseEntity.ok().body(list.stream().map(ArtistDTO::new).collect(Collectors.toList()));
     }
 
     @PostMapping
     public ResponseEntity<ArtistDTO> create(@Valid @RequestBody ArtistDTO obj) {
-        obj = mapper.map(service.create(obj), ArtistDTO.class);
+        obj = new ArtistDTO(service.create(obj));
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<ArtistDTO> update(@PathVariable Integer id, @Valid @RequestBody ArtistDTO obj) {
-        obj = mapper.map(service.update(id, obj), ArtistDTO.class);
+        obj = new ArtistDTO(service.update(id, obj));
         return ResponseEntity.ok().body(obj);
     }
 

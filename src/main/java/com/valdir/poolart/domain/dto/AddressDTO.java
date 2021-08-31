@@ -1,6 +1,6 @@
 package com.valdir.poolart.domain.dto;
 
-import com.valdir.poolart.domain.User;
+import com.valdir.poolart.domain.Address;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,5 +15,15 @@ public class AddressDTO {
     private String city;
     private String street;
     private String number;
-    protected User user;
+    private Integer user;
+
+    public AddressDTO(Address model) {
+        this.id = model.getId();
+        this.cep = model.getCep();
+        this.country = model.getCountry();
+        this.city = model.getCity();
+        this.street = model.getStreet();
+        this.number = model.getNumber();
+        this.user = model.getUser().getId();
+    }
 }

@@ -1,6 +1,7 @@
 package com.valdir.poolart.domain.dto;
 
 import com.valdir.poolart.domain.Address;
+import com.valdir.poolart.domain.Artist;
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
 import lombok.AllArgsConstructor;
@@ -15,12 +16,14 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ArtistDTO implements Serializable {
     private static final long serialVersionUID = 1L;
+
     private Integer id;
 
     @NotEmpty(message = "O campo NOME é mandatório")
@@ -29,7 +32,7 @@ public class ArtistDTO implements Serializable {
     private PersonType personType = PersonType.PHYSICAL;
 
     @NotEmpty(message = "O campo PHONE é mandatório")
-    private String Phone;
+    private String phone;
 
     @Email
     @NotEmpty(message = "O campo E-MAIL é mandatório")
@@ -38,7 +41,7 @@ public class ArtistDTO implements Serializable {
     @NotEmpty(message = "O campo PASSWORD é mandatório")
     private String password;
 
-    private Set<Profile> profiles = Collections.singleton(Profile.ARTIST);
+    private Set<Integer> profiles = Collections.singleton(Profile.ARTIST.getCode());
 
     @CPF
     @NotEmpty(message = "O campo CPF é mandatório")
@@ -47,4 +50,22 @@ public class ArtistDTO implements Serializable {
     private Integer age;
     private Address address;
     private Set<String> skills = new HashSet<>();
+
+    public ArtistDTO(Artist model) {
+        this.id = model.getId();
+        this.name = model.getName();
+        this.phone = model.getPhone();
+        this.cpf = model.getCpf();
+        this.personType = model.getPersonType();
+        this.email = model.getEmail();
+        this.password = model.getPassword();
+        this.age = model.getAge();
+        this.about = model.getAbout();
+        this.skills = model.getSkills();
+        this.profiles = model.getProfiles().stream().map(Profile::getCode).collect(Collectors.toSet());
+    }
+
+    public Set<Profile> getProfiles() {
+        return profiles.stream().map(Profile::toEnum).collect(Collectors.toSet());
+    }
 }

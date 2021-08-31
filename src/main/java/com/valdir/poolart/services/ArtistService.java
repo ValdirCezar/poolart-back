@@ -7,7 +7,6 @@ import com.valdir.poolart.repositories.ArtistRepository;
 import com.valdir.poolart.repositories.UserRepository;
 import com.valdir.poolart.services.exceptions.DataIntegrityViolationException;
 import com.valdir.poolart.services.exceptions.ObjectNotFoundException;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +20,6 @@ public class ArtistService {
 
     @Autowired
     private ArtistRepository repository;
-
-    @Autowired
-    private ModelMapper mapper;
 
     @Autowired
     private UserRepository userRepository;
@@ -41,7 +37,7 @@ public class ArtistService {
         obj.setId(null);
         validByEmailAndPhone(obj);
         validByCpf(obj);
-        return repository.save(mapper.map(obj, Artist.class));
+        return repository.save(new Artist(obj));
     }
 
     public Artist update(Integer id, ArtistDTO obj) {
@@ -49,7 +45,7 @@ public class ArtistService {
         findById(id);
         validByEmailAndPhone(obj);
         validByCpf(obj);
-        return repository.save(mapper.map(obj, Artist.class));
+        return repository.save(new Artist(obj));
     }
 
     public void delete(Integer id) {

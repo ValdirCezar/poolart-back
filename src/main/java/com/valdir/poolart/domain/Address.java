@@ -1,6 +1,7 @@
 package com.valdir.poolart.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.valdir.poolart.domain.dto.AddressDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,16 @@ public class Address  implements Serializable {
     @OneToOne
     @JoinColumn
     protected User user;
+
+    public Address(AddressDTO dto) {
+        this.id = dto.getId();
+        this.cep = dto.getCep();
+        this.country = dto.getCountry();
+        this.city = dto.getCity();
+        this.street = dto.getStreet();
+        this.number = dto.getNumber();
+        this.user.id = dto.getUser();
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -4,16 +4,21 @@ import com.valdir.poolart.domain.Address;
 import com.valdir.poolart.domain.Enterprise;
 import com.valdir.poolart.domain.enums.PersonType;
 import com.valdir.poolart.domain.enums.Profile;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
 public class EnterpriseDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -38,7 +43,9 @@ public class EnterpriseDTO implements Serializable {
 
     @NotEmpty(message = "O campo PASSWORD é mandatório")
     private String password;
-    private Set<Integer> profiles;
+
+    private Set<Integer> profiles = Collections.singleton(Profile.ENTERPRISE.getCode());
+
     private String about;
     private Address address;
 

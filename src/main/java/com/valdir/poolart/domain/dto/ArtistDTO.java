@@ -43,6 +43,10 @@ public class ArtistDTO implements Serializable {
 
     private Set<Integer> profiles = Collections.singleton(Profile.ARTIST.getCode());
 
+    private Integer numberOfReviews = 0;
+    private Double rating = 0D;
+    private Double sumOfReviews = 0D;
+
     @CPF
     @NotEmpty(message = "O campo CPF é mandatório")
     private String cpf;
@@ -63,6 +67,9 @@ public class ArtistDTO implements Serializable {
         this.about = model.getAbout();
         this.skills = model.getSkills();
         this.profiles = model.getProfiles().stream().map(Profile::getCode).collect(Collectors.toSet());
+        this.numberOfReviews = model.getNumberOfReviews();
+        this.rating = model.getRating();
+        this.sumOfReviews = model.getSumOfReviews();
     }
 
     public Set<Profile> getProfiles() {

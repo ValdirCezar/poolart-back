@@ -50,6 +50,9 @@ public class Artist extends User{
         this.about = dto.getAbout();
         this.skills = dto.getSkills();
         this.profiles = dto.getProfiles().stream().map(Profile::getCode).collect(Collectors.toSet());
+        this.numberOfReviews = dto.getNumberOfReviews();
+        this.rating = dto.getRating();
+        this.sumOfReviews = dto.getSumOfReviews();
     }
 
     public void addSkill(String skill) {

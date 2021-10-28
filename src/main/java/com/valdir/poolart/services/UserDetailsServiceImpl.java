@@ -11,19 +11,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Interface central que carrega dados específicos do usuário
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository repository;
 
+    // Localiza o usuário com base no nome de usuário
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> user = repository.findByEmail(email);
-        if (user.isPresent()) {
-            return new UserSS(user.get().getId(), user.get().getEmail(), user.get().getPassword(), user.get().getProfiles());
+        if(user.isEmpty()) {
+            throw new UsernameNotFoundException(email);
         }
-        throw new UsernameNotFoundException(email);
+        return new UserSS(user.get().getId(), user.get().getEmail(), user.get().getPassword(), user.get().getProfiles());
     }
-
 }

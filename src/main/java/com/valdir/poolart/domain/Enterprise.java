@@ -42,6 +42,9 @@ public class Enterprise extends User{
         this.password = dto.getPassword();
         this.about = dto.getAbout();
         this.profiles = dto.getProfiles().stream().map(Profile::getCode).collect(Collectors.toSet());
+        this.numberOfReviews = dto.getNumberOfReviews();
+        this.rating = dto.getRating();
+        this.sumOfReviews = dto.getSumOfReviews();
     }
 
 }

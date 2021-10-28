@@ -48,6 +48,9 @@ public class EnterpriseDTO implements Serializable {
 
     private String about;
     private Address address;
+    private Integer numberOfReviews = 0;
+    private Double rating = 0D;
+    private Double sumOfReviews = 0D;
 
     public EnterpriseDTO(Enterprise model) {
         this.id = model.getId();
@@ -59,6 +62,9 @@ public class EnterpriseDTO implements Serializable {
         this.password = model.getPassword();
         this.about = model.getAbout();
         this.profiles = model.getProfiles().stream().map(Profile::getCode).collect(Collectors.toSet());
+        this.numberOfReviews = model.getNumberOfReviews();
+        this.rating = model.getRating();
+        this.sumOfReviews = model.getSumOfReviews();
     }
 
     public Set<Profile> getProfiles() {

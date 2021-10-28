@@ -35,6 +35,10 @@ public abstract class User implements Serializable {
     protected String email;
     protected String password;
 
+    protected Integer numberOfReviews = 0;
+    protected Double rating = 0D;
+    protected Double sumOfReviews = 0D;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "PROFILES")
     protected Set<Integer> profiles = new HashSet<>();

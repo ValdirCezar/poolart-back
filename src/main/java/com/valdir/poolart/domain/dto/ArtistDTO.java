@@ -1,5 +1,6 @@
 package com.valdir.poolart.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.valdir.poolart.domain.Address;
 import com.valdir.poolart.domain.Artist;
 import com.valdir.poolart.domain.enums.PersonType;
@@ -38,6 +39,7 @@ public class ArtistDTO implements Serializable {
     @NotEmpty(message = "O campo E-MAIL é mandatório")
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotEmpty(message = "O campo PASSWORD é mandatório")
     private String password;
 

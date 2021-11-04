@@ -33,6 +33,11 @@ public class ArtistService {
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+ id));
     }
 
+    public Artist findByEmail(String email) {
+        Optional<Artist> obj = repository.findByEmail(email);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! E-mail: "+ email));
+    }
+
     public List<Artist> findAll() {
         return repository.findAll();
     }

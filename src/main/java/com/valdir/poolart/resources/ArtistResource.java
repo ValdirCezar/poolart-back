@@ -26,6 +26,12 @@ public class ArtistResource {
         return ResponseEntity.ok().body(new ArtistDTO(obj));
     }
 
+    @GetMapping(value = "/email/{email}")
+    public ResponseEntity<ArtistDTO> findByEmail(@PathVariable String email) {
+        Artist obj = service.findByEmail(email);
+        return ResponseEntity.ok().body(new ArtistDTO(obj));
+    }
+
     @GetMapping
     public ResponseEntity<List<ArtistDTO>> findAll() {
         List<Artist> list = service.findAll();

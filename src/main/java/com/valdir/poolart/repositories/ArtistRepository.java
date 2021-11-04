@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface ArtistRepository extends JpaRepository<Artist, Integer> {
     Optional<Artist> findByCpf(String cpf);
+    Optional<Artist> findByEmail(String email);
 }

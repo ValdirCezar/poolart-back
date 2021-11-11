@@ -28,6 +28,9 @@ public class ArtistService {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
+    @Autowired
+    private AddressService addressService;
+
     public Artist findById(Integer id) {
         Optional<Artist> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+ id));
@@ -35,7 +38,7 @@ public class ArtistService {
 
     public Artist findByEmail(String email) {
         Optional<Artist> obj = repository.findByEmail(email);
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Email: "+ email));
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! E-mail: "+ email));
     }
 
     public List<Artist> findAll() {

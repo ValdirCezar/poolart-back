@@ -1,6 +1,5 @@
 package com.valdir.poolart.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.valdir.poolart.domain.Address;
 import com.valdir.poolart.domain.Artist;
 import com.valdir.poolart.domain.enums.PersonType;
@@ -39,7 +38,7 @@ public class ArtistDTO implements Serializable {
     @NotEmpty(message = "O campo E-MAIL é mandatório")
     private String email;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotEmpty(message = "O campo PASSWORD é mandatório")
     private String password;
 
@@ -69,6 +68,7 @@ public class ArtistDTO implements Serializable {
         this.about = model.getAbout();
         this.skills = model.getSkills();
         this.profiles = model.getProfiles().stream().map(Profile::getCode).collect(Collectors.toSet());
+        this.address = model.getAddress();
         this.numberOfReviews = model.getNumberOfReviews();
         this.rating = model.getRating();
         this.sumOfReviews = model.getSumOfReviews();

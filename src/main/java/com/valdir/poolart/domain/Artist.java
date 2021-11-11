@@ -50,6 +50,7 @@ public class Artist extends User{
         this.about = dto.getAbout();
         this.skills = dto.getSkills();
         this.profiles = dto.getProfiles().stream().map(Profile::getCode).collect(Collectors.toSet());
+        this.address = dto.getAddress();
         this.numberOfReviews = dto.getNumberOfReviews();
         this.rating = dto.getRating();
         this.sumOfReviews = dto.getSumOfReviews();
@@ -59,4 +60,7 @@ public class Artist extends User{
         this.skills.add(skill);
     }
 
+    public Set<Profile> getProfiles() {
+        return profiles.stream().map(Profile::toEnum).collect(Collectors.toSet());
+    }
 }

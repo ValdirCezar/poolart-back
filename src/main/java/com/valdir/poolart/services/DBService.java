@@ -1,8 +1,10 @@
 package com.valdir.poolart.services;
 
+import com.valdir.poolart.domain.Address;
 import com.valdir.poolart.domain.Artist;
 import com.valdir.poolart.domain.Enterprise;
 import com.valdir.poolart.domain.enums.Profile;
+import com.valdir.poolart.repositories.AddressRepository;
 import com.valdir.poolart.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,9 +19,13 @@ public class DBService {
     private UserRepository userRepository;
 
     @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
     private BCryptPasswordEncoder encoder;
 
     public void startDB() {
+
         Artist a1 = new Artist(null, "Valdir Cezar", "43984634301", "valdir@mail.com", encoder.encode("123"), "58257957070", "Cantor", 21);
         a1.addProfile(Profile.ADMIN);
         Artist a2 = new Artist(null, "User 2", "43984634302", "email2@mail.com", encoder.encode("123"),  "35543591225", "Cantor", 22);
@@ -36,6 +42,10 @@ public class DBService {
         Enterprise e5 = new Enterprise(null, "Enterprise 5", "43991518435", "email50@mail.com", encoder.encode("123"),  "Description od enterprise 5", "04373868000198");
         Enterprise e6 = new Enterprise(null, "Enterprise 6", "43991518436", "email60@mail.com", encoder.encode("123"),  "Description od enterprise 6", "70696202000103");
         Enterprise e7 = new Enterprise(null, "Enterprise 7", "43991518437", "email70@mail.com", encoder.encode("123"),  "Description od enterprise 7", "27119176000113");
+
+        Address address = new Address(null, "86085539", "Brasil", "Londrina", "Rua dos testes", "4333", a1);
+
+        a1.setAddress(address);
 
         userRepository.saveAll(Arrays.asList(a1, a2, a3, a4, a5, a6, a7, e1, e2, e3, e4, e5, e6, e7));
     }

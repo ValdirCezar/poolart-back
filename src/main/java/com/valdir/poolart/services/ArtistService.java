@@ -28,6 +28,9 @@ public class ArtistService {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
+    @Autowired
+    private AddressService addressService;
+
     public Artist findById(Integer id) {
         Optional<Artist> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: "+ id));

@@ -24,7 +24,10 @@ import java.util.Arrays;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = { "/h2-console/**" };
-    private static final String[] PUBLIC_MATCHERS_POST = { "/enterprises/**", "/artists/**", "/reviews/**" };
+    private static final String[] PUBLIC_MATCHERS_POST = {
+            "/enterprises/**",
+            "/artists/**",
+            "/reviews/**" };
     private static final String[] PUBLIC_MATCHERS_GET = { "/users/**" };
 
     @Autowired

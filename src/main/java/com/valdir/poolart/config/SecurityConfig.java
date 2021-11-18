@@ -19,16 +19,16 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static final String[] PUBLIC_MATCHERS = { "/h2-console/**" };
+    private static final String[] PUBLIC_MATCHERS = {"/h2-console/**"};
     private static final String[] PUBLIC_MATCHERS_POST = {
             "/enterprises/**",
-            "/artists/**",
-            "/reviews/**" };
-    private static final String[] PUBLIC_MATCHERS_GET = { "/users/**" };
+            "/artists/**"};
+    private static final String[] PUBLIC_MATCHERS_GET = {"/users/**"};
 
     @Autowired
     private Environment env;

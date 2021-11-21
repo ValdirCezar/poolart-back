@@ -19,6 +19,12 @@ public class UserResource {
     @Autowired
     private UserService service;
 
+    @GetMapping(value = "/username/{id}")
+    public ResponseEntity<User> findById(@PathVariable Integer id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj);
+    }
+
     @GetMapping(value = "/number-of-users")
     public ResponseEntity<Integer> findNumberOfUsers() {
         return ResponseEntity.ok().body(service.findNumberOfUsers());

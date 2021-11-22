@@ -3,6 +3,7 @@ package com.valdir.poolart.services;
 import com.amazonaws.services.licensemanager.model.AuthorizationException;
 import com.valdir.poolart.domain.User;
 import com.valdir.poolart.repositories.UserRepository;
+import com.valdir.poolart.services.exceptions.ObjectNotFoundException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -64,6 +65,13 @@ public class UserService {
 
         log.info("USER_SERVICE ::: Saindo do uploadProfilePicture");
         return s3service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
+
+    }
+
+    public User findById(Integer id) {
+        return repository.findById(id).orElseThrow(
+                () -> new ObjectNotFoundException("Objeto não encontrado")
+        );
 
     }
 }
